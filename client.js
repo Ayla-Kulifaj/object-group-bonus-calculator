@@ -36,7 +36,55 @@ console.log('array of employee data: ',  employees );
 
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
+function calculateIndividualEmployeeBonus(employee) {
+  let bonusPercentage = 0;
 
+  
+  if (employee.reviewRating <= 2) {
+    bonusPercentage = 0;
+  } else if (employee.reviewRating === 3) {
+    bonusPercentage = 0.04;
+  } else if (employee.reviewRating === 4) {
+    bonusPercentage = 0.06;
+  } else if (employee.reviewRating === 5) {
+    bonusPercentage = 0.1;
+  }
+
+  
+  if (employee.employeeNumber.length === 4) {
+    bonusPercentage += 0.05;
+  }
+
+ 
+  if (Number(employee.annualSalary) > 65000) {
+    bonusPercentage -= 0.01;
+  }
+
+  
+  if (bonusPercentage > 0.13) {
+    bonusPercentage = 0.13;
+  } else if (bonusPercentage < 0) {
+    bonusPercentage = 0;
+  }
+
+ 
+  const totalBonus = Math.round(employee.annualSalary * bonusPercentage);
+  const totalCompensation = Number(employee.annualSalary) + totalBonus;
+
+  
+  return {
+    name: employee.name,
+    bonusPercentage: bonusPercentage,
+    totalCompensation: totalCompensation,
+    totalBonus: totalBonus,
+  };
+}
+
+
+employees.forEach(employee => {
+  const bonusResult = calculateIndividualEmployeeBonus(employee);
+  console.log(bonusResult);
+});
 // This problem is massive! Break the problem down, take small steps, and test as you go.
 // What is the fewest lines of code I can write and test to get just a little closer?
 
@@ -48,7 +96,10 @@ console.log('array of employee data: ',  employees );
 
 // This function will calculate 1 employee's bonus!
 //
-function calculateIndividualEmployeeBonus( employee ) {  
+employees.forEach(employee => {
+  const bonusResult = calculateIndividualEmployeeBonus(employee);
+  console.log(bonusResult);
+});
   // your logic here
   
   
